@@ -19,10 +19,10 @@ extension Reminder {
     return request
   }
   
-  @NSManaged public var text: String?
+  @NSManaged public var text: String
   @NSManaged public var latitude: Double
   @NSManaged public var longitude: Double
   @NSManaged public var isOnEntry: Bool
   @NSManaged public var creationDate: Date
-  
+  @NSManaged public var isEnabled: Bool
 }

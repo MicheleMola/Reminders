@@ -20,6 +20,7 @@
 		DE267D0B2153D4FD00D0EFF8 /* RemindersDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE267D0A2153D4FD00D0EFF8 /* RemindersDataSource.swift */; };
 		DE267D0E2153D5B300D0EFF8 /* ReminderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE267D0D2153D5B300D0EFF8 /* ReminderCell.swift */; };
 		DE267D102153EC0E00D0EFF8 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE267D0F2153EC0E00D0EFF8 /* DetailViewController.swift */; };
+		DEB35149215691CF006D6B0D /* LocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB35148215691CF006D6B0D /* LocationViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		DE267D0A2153D4FD00D0EFF8 /* RemindersDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemindersDataSource.swift; sourceTree = "<group>"; };
 		DE267D0D2153D5B300D0EFF8 /* ReminderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderCell.swift; sourceTree = "<group>"; };
 		DE267D0F2153EC0E00D0EFF8 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		DEB35148215691CF006D6B0D /* LocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +92,7 @@
 				DE267CF92153984600D0EFF8 /* MasterViewController.swift */,
 				DE267D072153D46800D0EFF8 /* RemindersFetchedResultsController.swift */,
 				DE267D0F2153EC0E00D0EFF8 /* DetailViewController.swift */,
+				DEB35148215691CF006D6B0D /* LocationViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -196,6 +199,7 @@
 				DE267D002153D0A100D0EFF8 /* Reminder+CoreDataClass.swift in Sources */,
 				DE267CE52153967900D0EFF8 /* AppDelegate.swift in Sources */,
 				DE267D0B2153D4FD00D0EFF8 /* RemindersDataSource.swift in Sources */,
+				DEB35149215691CF006D6B0D /* LocationViewController.swift in Sources */,
 				DE267D0E2153D5B300D0EFF8 /* ReminderCell.swift in Sources */,
 				DE267D082153D46800D0EFF8 /* RemindersFetchedResultsController.swift in Sources */,
 				DE267D102153EC0E00D0EFF8 /* DetailViewController.swift in Sources */,
