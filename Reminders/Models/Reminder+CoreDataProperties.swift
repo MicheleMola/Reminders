@@ -26,3 +26,34 @@ extension Reminder {
   @NSManaged public var creationDate: Date
   @NSManaged public var isEnabled: Bool
 }
+
+extension Reminder {
+  static var entityName: String {
+    return String(describing: Reminder.self)
+  }
+  
+  @nonobjc class func createWith(text: String, latitude: Double, longitude: Double, isOnEntry: Bool, isEnabled: Bool, in context: NSManagedObjectContext) -> Reminder {
+    let reminder = NSEntityDescription.insertNewObject(forEntityName: Reminder.entityName, into: context) as! Reminder
+    
+    reminder.creationDate = Date()
+    reminder.text = text
+    reminder.latitude = latitude
+    reminder.longitude = longitude
+    reminder.isOnEntry = isOnEntry
+    reminder.isEnabled = isEnabled
+    
+    return reminder
+  }
+  
+  @nonobjc class func update(_ reminder: Reminder, withText text: String, latitude: Double, longitude: Double, isOnEntry: Bool, isEnabled: Bool, in context: NSManagedObjectContext) -> Reminder {
+    
+    reminder.creationDate = Date()
+    reminder.text = text
+    reminder.latitude = latitude
+    reminder.longitude = longitude
+    reminder.isOnEntry = isOnEntry
+    reminder.isEnabled = isEnabled
+    
+    return reminder
+  }
+}
