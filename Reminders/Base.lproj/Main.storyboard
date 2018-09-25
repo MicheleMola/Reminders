@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Master View Controller-->
+        <!--Proximity Reminders-->
         <scene sceneID="FJa-cE-TAo">
             <objects>
                 <tableViewController storyboardIdentifier="MasterViewController" id="N7j-Pf-iC3" customClass="MasterViewController" customModule="Reminders" customModuleProvider="target" sceneMemberID="viewController">
@@ -18,14 +18,39 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ReminderCell" rowHeight="120" id="0mx-Pw-B1a" customClass="ReminderCell" customModule="Reminders" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="375" height="120"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ReminderCell" rowHeight="54" id="0mx-Pw-B1a" customClass="ReminderCell" customModule="Reminders" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="54"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="0mx-Pw-B1a" id="39i-3q-1Ig">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="119.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="53.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0AN-7D-dxu">
+                                            <rect key="frame" x="16" y="15.5" width="301" height="23"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dmz-iI-HvA">
+                                            <rect key="frame" x="325" y="10" width="34" height="34"/>
+                                            <color key="backgroundColor" red="0.0" green="0.97680455450000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="34" id="aa5-b9-gou"/>
+                                                <constraint firstAttribute="width" constant="34" id="jPR-T4-7qM"/>
+                                            </constraints>
+                                        </imageView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="0AN-7D-dxu" firstAttribute="centerY" secondItem="39i-3q-1Ig" secondAttribute="centerY" id="1Ez-uY-YAB"/>
+                                        <constraint firstItem="0AN-7D-dxu" firstAttribute="leading" secondItem="39i-3q-1Ig" secondAttribute="leading" constant="16" id="5e7-qI-axn"/>
+                                        <constraint firstItem="dmz-iI-HvA" firstAttribute="centerY" secondItem="39i-3q-1Ig" secondAttribute="centerY" id="E6D-aR-PnZ"/>
+                                        <constraint firstItem="dmz-iI-HvA" firstAttribute="leading" secondItem="0AN-7D-dxu" secondAttribute="trailing" constant="8" id="c7z-zu-PVe"/>
+                                        <constraint firstAttribute="trailing" secondItem="dmz-iI-HvA" secondAttribute="trailing" constant="16" id="qWt-rX-tRH"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="isEnabledImageView" destination="dmz-iI-HvA" id="HAf-g2-QhP"/>
+                                    <outlet property="messageLabel" destination="0AN-7D-dxu" id="VMb-k3-j2f"/>
                                     <segue destination="gUh-t4-kGO" kind="show" identifier="showDetail" id="jeg-s2-dJt"/>
                                 </connections>
                             </tableViewCell>
@@ -35,7 +60,7 @@
                             <outlet property="delegate" destination="N7j-Pf-iC3" id="Ymd-qG-psm"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="FfD-Uh-VST">
+                    <navigationItem key="navigationItem" title="Proximity Reminders" id="FfD-Uh-VST">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="EfD-24-uwX">
                             <connections>
                                 <segue destination="gUh-t4-kGO" kind="show" identifier="addReminder" id="IgI-Ac-EJu"/>
@@ -45,7 +70,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HUv-1X-WI4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="746" y="33"/>
+            <point key="canvasLocation" x="744.79999999999995" y="32.833583208395808"/>
         </scene>
         <!--Reminder-->
         <scene sceneID="tex-CN-M3a">
@@ -69,7 +94,7 @@
                                                     <rect key="frame" x="16" y="11" width="343" height="22"/>
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                                 </textField>
                                             </subviews>
                                             <constraints>

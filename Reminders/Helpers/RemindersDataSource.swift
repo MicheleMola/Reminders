@@ -30,7 +30,7 @@ class RemindersDataSource: NSObject, UITableViewDataSource {
     let reminderCell = tableView.dequeueReusableCell(withIdentifier: ReminderCell.reuseIdentifier, for: indexPath) as! ReminderCell
     
     let reminder = fetchedResultsController.object(at: indexPath)
-    //entryCell.configureCell(entry: entry)
+    reminderCell.configureCell(withReminder: reminder)
     
     return reminderCell
   }

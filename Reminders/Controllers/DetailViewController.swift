@@ -26,6 +26,23 @@ class DetailViewController: UITableViewController {
     super.viewDidLoad()
     
     mapView.delegate = self
+    
+    configureView()
+  }
+  
+  func configureView() {
+    self.textLabel.delegate = self
+    
+    if let reminder = reminder {
+      self.textLabel.text = reminder.text
+      self.isEnabledSwitch.setOn(reminder.isEnabled, animated: true)
+      
+      let coordinate = CLLocationCoordinate2D(latitude: reminder.latitude, longitude: reminder.longitude)
+      self.coordinate = coordinate
+      self.addCircle(toCoordinate: coordinate)
+      
+      self.modalitySegControl.selectedSegmentIndex = reminder.isOnEntry ? 0 : 1
+    }
   }
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -37,10 +54,6 @@ class DetailViewController: UITableViewController {
   }
   
   @IBAction func savePressed(_ sender: UIBarButtonItem) {
-    print(context)
-    print(textLabel.text)
-    print(self.coordinate)
-
     guard let context = context, let text = textLabel.text, let coordinate = self.coordinate else {
       alertWith(title: "Alert", message: "Please fill all fields")
       return
@@ -56,7 +69,9 @@ class DetailViewController: UITableViewController {
     
     do {
       try context.save()
-    navigationController?.navigationController?.popViewController(animated: true)
+      
+      navigationController?.popViewController(animated: true)
+      dismiss(animated: true, completion: nil)
     } catch let error as NSError {
       alertWith(title: "Alert", message: "Save failed")
       print("Could not save. \(error), \(error.userInfo)")
@@ -71,6 +86,15 @@ class DetailViewController: UITableViewController {
   
   
   func addCircle(toCoordinate coordinate: CLLocationCoordinate2D) {
+    let annotation = MKPointAnnotation()
+    annotation.title = "Point"
+    annotation.coordinate = coordinate
+    self.mapView.addAnnotation(annotation)
+    
+    let span = MKCoordinateSpan(latitudeDelta: 0.002, longitudeDelta: 0.002)
+    let region = MKCoordinateRegion(center: coordinate, span: span)
+    self.mapView.setRegion(region, animated: true)
+    
     let circle = MKCircle(center: coordinate, radius: 50 as CLLocationDistance)
     self.mapView.addOverlay(circle)
   }
@@ -80,15 +104,6 @@ class DetailViewController: UITableViewController {
 extension DetailViewController: LocationViewControllerDelegate {
   func location(withCoordinate coordinate: CLLocationCoordinate2D) {
     self.coordinate = coordinate
-    
-    let annotation = MKPointAnnotation()
-    annotation.title = "Point"
-    annotation.coordinate = coordinate
-    self.mapView.addAnnotation(annotation)
-    
-    let span = MKCoordinateSpan(latitudeDelta: 0.002, longitudeDelta: 0.002)
-    let region = MKCoordinateRegion(center: coordinate, span: span)
-    self.mapView.setRegion(region, animated: true)
     
     self.addCircle(toCoordinate: coordinate)
   }
@@ -101,6 +116,13 @@ extension DetailViewController: MKMapViewDelegate {
     circle.fillColor = UIColor.red.withAlphaComponent(0.1)
     circle.lineWidth = 1
     return circle
+  }
+}
+
+extension DetailViewController: UITextFieldDelegate {
+  func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    textField.resignFirstResponder()
+    return false
   }
 }
 
