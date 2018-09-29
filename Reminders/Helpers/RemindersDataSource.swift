@@ -13,6 +13,8 @@ class RemindersDataSource: NSObject, UITableViewDataSource {
   private let tableView: UITableView
   private var fetchedResultsController: RemindersFetchedResultsController
   
+  var notificationManager = NotificationManager()
+  
   init(fetchRequest: NSFetchRequest<Reminder>, managedObjectContext context: NSManagedObjectContext, tableView: UITableView) {
     self.tableView = tableView
     self.fetchedResultsController = RemindersFetchedResultsController(request: fetchRequest, context: context)
@@ -38,10 +40,15 @@ class RemindersDataSource: NSObject, UITableViewDataSource {
   func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
     if editingStyle == .delete {
       let context = fetchedResultsController.managedObjectContext
-      context.delete(fetchedResultsController.object(at: indexPath))
+      
+      let reminder = fetchedResultsController.object(at: indexPath)
+      
+      context.delete(reminder)
       
       do {
         try context.save()
+        
+        self.notificationManager.currentNotificationCenter.removePendingNotificationRequests(withIdentifiers: [reminder.text])
       } catch {
         let nserror = error as NSError
         fatalError("Unresolved error \(nserror), \(nserror.userInfo)")

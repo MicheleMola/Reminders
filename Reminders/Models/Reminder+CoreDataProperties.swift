@@ -47,7 +47,6 @@ extension Reminder {
   
   @nonobjc class func update(_ reminder: Reminder, withText text: String, latitude: Double, longitude: Double, isOnEntry: Bool, isEnabled: Bool, in context: NSManagedObjectContext) -> Reminder {
     
-    reminder.creationDate = Date()
     reminder.text = text
     reminder.latitude = latitude
     reminder.longitude = longitude

@@ -17,6 +17,8 @@ class DetailViewController: UITableViewController {
   
   var coordinate: CLLocationCoordinate2D?
   
+  var notificationManager = NotificationManager()
+  
   @IBOutlet weak var textLabel: UITextField!
   @IBOutlet weak var isEnabledSwitch: UISwitch!
   @IBOutlet weak var modalitySegControl: UISegmentedControl!
@@ -60,11 +62,21 @@ class DetailViewController: UITableViewController {
     }
     
     let isOnEntry = modalitySegControl.selectedSegmentIndex == 0
+    let isEnabled = isEnabledSwitch.isOn
     
     if let reminder = reminder {
-      let _ = Reminder.update(reminder, withText: text, latitude: coordinate.latitude, longitude: coordinate.longitude, isOnEntry: isOnEntry, isEnabled: isEnabledSwitch.isOn, in: context)
+      let reminder = Reminder.update(reminder, withText: text, latitude: coordinate.latitude, longitude: coordinate.longitude, isOnEntry: isOnEntry, isEnabled: isEnabledSwitch.isOn, in: context)
+      
+      if isEnabled {
+        self.notificationManager.scheduleNotification(withReminder: reminder)
+      } else {
+        self.notificationManager.currentNotificationCenter.removePendingNotificationRequests(withIdentifiers: [reminder.text])
+      }
+      
     } else {
-      let _ = Reminder.createWith(text: text, latitude: coordinate.latitude, longitude: coordinate.longitude, isOnEntry: isOnEntry, isEnabled: isEnabledSwitch.isOn, in: context)
+      let reminder = Reminder.createWith(text: text, latitude: coordinate.latitude, longitude: coordinate.longitude, isOnEntry: isOnEntry, isEnabled: isEnabledSwitch.isOn, in: context)
+      
+      if isEnabled { self.notificationManager.scheduleNotification(withReminder: reminder) }
     }
     
     do {
