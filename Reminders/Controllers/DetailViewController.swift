@@ -56,7 +56,7 @@ class DetailViewController: UITableViewController {
   }
   
   @IBAction func savePressed(_ sender: UIBarButtonItem) {
-    guard let context = context, let text = textLabel.text, let coordinate = self.coordinate else {
+    guard let context = context, let text = textLabel.text, !text.isEmpty, let coordinate = self.coordinate else {
       alertWith(title: "Alert", message: "Please fill all fields")
       return
     }

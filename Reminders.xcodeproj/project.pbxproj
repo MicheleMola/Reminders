@@ -82,7 +82,6 @@
 				DE267CEE2153967A00D0EFF8 /* Assets.xcassets */,
 				DE267CF02153967A00D0EFF8 /* LaunchScreen.storyboard */,
 				DE267CF32153967A00D0EFF8 /* Info.plist */,
-				DE267CEB2153967900D0EFF8 /* Reminders.xcdatamodeld */,
 				DE267CFD2153985C00D0EFF8 /* Controllers */,
 			);
 			path = Reminders;
@@ -105,6 +104,7 @@
 				DE267CFE2153D0A100D0EFF8 /* Reminder+CoreDataClass.swift */,
 				DE267CFF2153D0A100D0EFF8 /* Reminder+CoreDataProperties.swift */,
 				DE267D052153D3D300D0EFF8 /* CoreDataStack.swift */,
+				DE267CEB2153967900D0EFF8 /* Reminders.xcdatamodeld */,
 			);
 			path = Models;
 			sourceTree = "<group>";
