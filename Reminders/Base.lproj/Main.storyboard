@@ -26,30 +26,18 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0AN-7D-dxu">
-                                            <rect key="frame" x="16" y="15.5" width="301" height="23"/>
+                                            <rect key="frame" x="16" y="15.5" width="46.5" height="23"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dmz-iI-HvA">
-                                            <rect key="frame" x="325" y="10" width="34" height="34"/>
-                                            <color key="backgroundColor" red="0.0" green="0.97680455450000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="34" id="aa5-b9-gou"/>
-                                                <constraint firstAttribute="width" constant="34" id="jPR-T4-7qM"/>
-                                            </constraints>
-                                        </imageView>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="0AN-7D-dxu" firstAttribute="centerY" secondItem="39i-3q-1Ig" secondAttribute="centerY" id="1Ez-uY-YAB"/>
                                         <constraint firstItem="0AN-7D-dxu" firstAttribute="leading" secondItem="39i-3q-1Ig" secondAttribute="leading" constant="16" id="5e7-qI-axn"/>
-                                        <constraint firstItem="dmz-iI-HvA" firstAttribute="centerY" secondItem="39i-3q-1Ig" secondAttribute="centerY" id="E6D-aR-PnZ"/>
-                                        <constraint firstItem="dmz-iI-HvA" firstAttribute="leading" secondItem="0AN-7D-dxu" secondAttribute="trailing" constant="8" id="c7z-zu-PVe"/>
-                                        <constraint firstAttribute="trailing" secondItem="dmz-iI-HvA" secondAttribute="trailing" constant="16" id="qWt-rX-tRH"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="isEnabledImageView" destination="dmz-iI-HvA" id="HAf-g2-QhP"/>
                                     <outlet property="messageLabel" destination="0AN-7D-dxu" id="VMb-k3-j2f"/>
                                     <segue destination="gUh-t4-kGO" kind="show" identifier="showDetail" id="jeg-s2-dJt"/>
                                 </connections>

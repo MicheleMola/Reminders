@@ -13,6 +13,8 @@ class MasterViewController: UITableViewController {
   
   let context = CoreDataStack().managedObjectContext
   
+  var notificationManager = NotificationManager()
+  
   lazy var dataSource: RemindersDataSource = {
     let request: NSFetchRequest<Reminder> = Reminder.fetchRequest()
     return RemindersDataSource(fetchRequest: request, managedObjectContext: self.context, tableView: self.tableView)
@@ -46,6 +48,40 @@ class MasterViewController: UITableViewController {
   
   override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
     return 80
+  }
+  
+  override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+    
+    let deleteAction = UITableViewRowAction(style: .destructive, title: "Delete") { action, indexPath in
+      
+      let reminder = self.dataSource.reminders[indexPath.row]
+      
+      self.context.delete(reminder)
+      
+      do {
+        try self.context.save()
+        self.notificationManager.currentNotificationCenter.removePendingNotificationRequests(withIdentifiers: [reminder.text])
+      } catch {
+        let nserror = error as NSError
+        fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+      }
+    }
+    
+    let doneAction = UITableViewRowAction(style: .normal, title: "Done") { action, indexPath in
+      let reminder = self.dataSource.reminders[indexPath.row]
+      
+      let _ = Reminder.update(reminder, withText: reminder.text, latitude: reminder.latitude, longitude: reminder.longitude, isOnEntry: reminder.isOnEntry, isEnabled: false, in: self.context)
+      
+      do {
+        try self.context.save()
+      
+      } catch {
+        let nserror = error as NSError
+        fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+      }
+    }
+    
+    return [deleteAction, doneAction]
   }
   
 }

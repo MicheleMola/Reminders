@@ -37,24 +37,6 @@ class RemindersDataSource: NSObject, UITableViewDataSource {
     return reminderCell
   }
   
-  func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-    if editingStyle == .delete {
-      let context = fetchedResultsController.managedObjectContext
-      
-      let reminder = fetchedResultsController.object(at: indexPath)
-      
-      context.delete(reminder)
-      
-      do {
-        try context.save()
-        
-        self.notificationManager.currentNotificationCenter.removePendingNotificationRequests(withIdentifiers: [reminder.text])
-      } catch {
-        let nserror = error as NSError
-        fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
-      }
-    }
-  }
 }
 
 extension RemindersDataSource: NSFetchedResultsControllerDelegate {
